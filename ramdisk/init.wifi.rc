@@ -33,14 +33,14 @@ on post-fs-data
     write /data/misc/conn/.wifiver.info 0
     chown system root /data/misc/conn/.wifiver.info
     chmod 0666 /data/misc/conn/.wifiver.info
-	
+
     # for WIFI Antenna
     write /data/misc/conn/.wificable.info E
     chown system root /data/misc/conn/.wificable.info
     chmod 0640 /data/misc/conn/.wificable.info
 
     # for WIFI MEMDUMP
-    # The default value of below memdump file is set in SecProductFeature 
+    # The default value of below memdump file is set in SecProductFeature
     # write /data/misc/conn/.memdump.info 2
     chown system root /data/misc/conn/.memdump.info
     chmod 0666 /data/misc/conn/.memdump.info
@@ -59,11 +59,14 @@ on post-fs-data
     mkdir /efs/wifi 0775 radio system
     chown system wifi /efs/wifi/.mac.info
     chmod 0660 /efs/wifi/.mac.info
-    
+
     # for WIFI hotspot
     write /data/misc/conn/.softap.info 0
     chown system root /data/misc/conn/.softap.info
     chmod 0640 /data/misc/conn/.softap.info
+
+# Wifi firmware reload_path
+    chown wifi wifi /sys/module/dhd/parameters/firmware_path
 
 on boot
     setprop wifi.interface wlan0
@@ -101,12 +104,10 @@ on property:init.svc.macloader=stopped
     chmod 0664 /data/.rev
 # end of WiFi MFG (TestMode)
 
-service hostapd /system/bin/hostapd -dddd -e 
+service hostapd /system/bin/hostapd -dddd -e
 /data/misc/wifi/entropy.bin /data/misc/wifi/hostapd.conf
     class late_start
     user root
     group root
     oneshot
     disabled
-
-
