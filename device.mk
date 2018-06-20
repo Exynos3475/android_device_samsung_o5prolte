@@ -29,6 +29,11 @@ TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_BOOTANIMATION_HALF_RES := true
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl \
+		libbt-vendor
+
 # Flat device tree for boot image
 PRODUCT_PACKAGES += \
     dtbhtoolExynos
@@ -121,7 +126,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml
-    
+
 PRODUCT_PACKAGES += \
     audio.primary.universal3475 \
     audio.a2dp.default \
@@ -176,7 +181,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb \
 	ro.secure=0 \
 	ro.adb.secure=0
-	
+
 
 # Dalvik Heap
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
