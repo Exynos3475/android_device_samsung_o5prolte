@@ -1,2 +1,2 @@
-Device configuration for the Samsung Galaxy J2 (j2lte)
+Device configuration for the Samsung Galaxy On5 Pro (o5prolte)
 WIP for now
